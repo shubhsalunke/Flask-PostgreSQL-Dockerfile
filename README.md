@@ -3,7 +3,7 @@
 ## Server Login
 
 ```bash
-ssh azureuser@20.242.50.155
+ssh azureuser@Your server IP
 ```
 
 ---
@@ -25,7 +25,7 @@ exit
 ```
 
 ```bash
-ssh azureuser@20.242.50.155
+ssh azureuser@Your server IP
 ```
 
 Check Docker:
@@ -175,13 +175,13 @@ Allow
 ## Flask App
 
 ```text
-http://20.242.50.155:5000
+http://Your server IP:5000
 ```
 
 ## Database Connection Check
 
 ```text
-http://20.242.50.155:5000/db
+http://Your server IP:5000/db
 ```
 
 ---
