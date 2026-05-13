@@ -265,6 +265,126 @@ http://Your-Server-IP:5000/db
 
 ---
 
+# Login to PostgreSQL Container
+
+Check running containers:
+
+```bash
+docker ps
+```
+
+Login directly into PostgreSQL:
+
+```bash
+docker exec -it postgres-db psql -U myuser -d mydb
+```
+
+Expected:
+
+```text
+mydb=#
+```
+
+---
+
+# PostgreSQL Useful Commands
+
+## Show Databases
+
+```sql
+\l
+```
+
+---
+
+## Show Tables
+
+```sql
+\dt
+```
+
+If output shows:
+
+```text
+Did not find any relations.
+```
+
+Meaning:
+
+- No tables created yet
+- Database is empty
+
+---
+
+## Create Table
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100)
+);
+```
+
+Expected:
+
+```text
+CREATE TABLE
+```
+
+---
+
+## Check Tables Again
+
+```sql
+\dt
+```
+
+Expected:
+
+```text
+users
+```
+
+---
+
+## Insert Data
+
+```sql
+INSERT INTO users (name) VALUES ('Shubh');
+```
+
+Expected:
+
+```text
+INSERT 0 1
+```
+
+---
+
+## View Data
+
+```sql
+SELECT * FROM users;
+```
+
+Expected:
+
+```text
+ id | name
+----+-------
+  1 | Shubh
+```
+
+---
+
+## Exit PostgreSQL
+
+```sql
+\q
+```
+
+---
+
 # Docker Useful Commands
 
 ## View Logs
