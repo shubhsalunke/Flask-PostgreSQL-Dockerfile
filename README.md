@@ -1,9 +1,53 @@
 # Flask + PostgreSQL Docker Project (Without Docker Compose)
 
-## Server Login
+## Project Overview
+
+This project demonstrates how to deploy a Flask application connected with PostgreSQL using Docker containers and a custom Docker network.
+
+The setup includes:
+
+- Flask application in Docker
+- PostgreSQL database in Docker
+- Custom Docker network for container communication
+- `.env` file for environment variables
+- Dockerfile-based deployment
+- No Docker Compose used
+
+---
+
+# Project Architecture
+
+```text
+Browser
+   ↓
+Flask Container
+   ↓
+Docker Network
+   ↓
+PostgreSQL Container
+```
+
+---
+
+# Project Structure
+
+```text
+Flask-PostgreSQL-Dockerfile/
+│
+├── app.py
+├── requirements.txt
+├── Dockerfile
+├── sample.env
+├── .env
+└── README.md
+```
+
+---
+
+# Server Login
 
 ```bash
-ssh azureuser@Your server IP
+ssh azureuser@Your-Server-IP
 ```
 
 ---
@@ -24,8 +68,10 @@ Logout and login again:
 exit
 ```
 
+Reconnect:
+
 ```bash
-ssh azureuser@Your server IP
+ssh azureuser@Your-Server-IP
 ```
 
 Check Docker:
@@ -40,7 +86,43 @@ docker --version
 
 ```bash
 git clone https://github.com/shubhsalunke/Flask-PostgreSQL-Dockerfile.git
+```
+
+```bash
 cd Flask-PostgreSQL-Dockerfile
+```
+
+---
+
+# Create Environment File
+
+Copy sample environment file:
+
+```bash
+cp sample.env .env
+```
+
+Open `.env` file:
+
+```bash
+nano .env
+```
+
+Update values if needed:
+
+```env
+DB_HOST=postgres-db
+DB_NAME=mydb
+DB_USER=myuser
+DB_PASS=mypassword
+```
+
+Save and exit:
+
+```text
+CTRL + O
+ENTER
+CTRL + X
 ```
 
 ---
@@ -87,11 +169,8 @@ docker build -t flask-postgres-app .
 docker run -d \
   --name flask-app \
   --network flask-network \
+  --env-file .env \
   -p 5000:5000 \
-  -e DB_HOST=postgres-db \
-  -e DB_NAME=mydb \
-  -e DB_USER=myuser \
-  -e DB_PASS=mypassword \
   flask-postgres-app
 ```
 
@@ -175,13 +254,13 @@ Allow
 ## Flask App
 
 ```text
-http://Your server IP:5000
+http://Your-Server-IP:5000
 ```
 
 ## Database Connection Check
 
 ```text
-http://Your server IP:5000/db
+http://Your-Server-IP:5000/db
 ```
 
 ---
@@ -229,3 +308,14 @@ docker rm -f flask-app postgres-db
 ```bash
 docker network rm flask-network
 ```
+
+---
+
+# Technologies Used
+
+- Python
+- Flask
+- PostgreSQL
+- Docker
+- Docker Networking
+- Environment Variables
